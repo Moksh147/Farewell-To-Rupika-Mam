@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farewell Tribute</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Farewell to Our Amazing Teacher!</h1>
+        <p>To our most dedicated Computer Application teacher Miss Rupika Bawa</p>
+    </header>
+    
+    <main>
+        <section id="messages">
+            <h2>Messages</h2>
+            <ul id="messageList"></ul>
+            <textarea id="messageInput" placeholder="Write your message here..."></textarea>
+            <button onclick="addMessage()">Submit</button>
+        </section>
+
+        <section id="photos">
+            <h2>Photos</h2>
+            <input type="file" id="photoInput" accept="image/*" onchange="previewImage()">
+            <div id="photoPreview"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Created by Moksh.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
