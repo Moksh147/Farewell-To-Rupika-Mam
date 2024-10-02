@@ -1,0 +1,58 @@
+
+window.onload = function() {
+    const messageList = document.getElementById('messageList');
+    const messages = JSON.parse(localStorage.getItem('messages')) || [];
+    const images = JSON.parse(localStorage.getItem('images')) || [];
+
+    messages.forEach(message => {
+        const li = document.createElement('li');
+        li.textContent = message;
+        messageList.appendChild(li);
+    });
+
+    images.forEach(image => {
+        const img = document.createElement('img');
+        img.src = image;
+        document.getElementById('photoPreview').appendChild(img);
+    });
+};
+
+function addMessage() {
+    const messageInput = document.getElementById('messageInput');
+    const messageList = document.getElementById('messageList');
+    
+    if (messageInput.value) {
+        const li = document.createElement('li');
+        li.textContent = messageInput.value;
+        messageList.appendChild(li);
+        
+        const messages = JSON.parse(localStorage.getItem('messages')) || [];
+        messages.push(messageInput.value);
+        localStorage.setItem('messages', JSON.stringify(messages));
+        
+        messageInput.value = ''; 
+    } else {
+        alert('Please enter a message.');
+    }
+}
+
+function previewImage() {
+    const photoInput = document.getElementById('photoInput');
+    const photoPreview = document.getElementById('photoPreview');
+    photoPreview.innerHTML = ''; 
+
+    const files = photoInput.files;
+    const images = JSON.parse(localStorage.getItem('images')) || [];
+
+    for (let i = 0; i < files.length; i++) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const img = document.createElement('img');
+            img.src = event.target.result;
+            photoPreview.appendChild(img);
+            images.push(event.target.result); // Save the Base64 string
+            localStorage.setItem('images', JSON.stringify(images)); 
+        };
+        reader.readAsDataURL(files[i]);
+    }
+}
